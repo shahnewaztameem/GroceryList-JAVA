@@ -12,30 +12,49 @@ public class GroceryList {
 
     // print all the items from grocerylist
     public void printGroceryList() {
-        System.out.println("You have " + groceryList.size() + " items in your grocecy list");
-        for(int i = 0; i < groceryList.size(); i++) {
-            System.out.println((i + 1) + ". " + groceryList.get(i));
+        if(groceryList.size()  <= 0) {
+            System.out.println("You have no items in your grocecy list");
+        } else {
+            for(int i = 0; i < groceryList.size(); i++) {
+                System.out.println((i + 1) + ". " + groceryList.get(i));
+            }
+        }
+    }
+    public void modifyGroceryItem(String currentItem, String newItem) {
+        int position = findItem(currentItem);
+        if(position >=0 ) {
+            modifyGroceryItem(position, newItem);
         }
     }
 
     // modify grocery item
-    public void modifyGroceryItem(int index, String item) {
+    private void modifyGroceryItem(int index, String item) {
         groceryList.set(index, item);
         System.out.println("Grocery item " + (index+1) + " has been updated");
     }
 
+    public void removeGroceryItem(String item) {
+        int position = findItem(item);
+        if(position >=0 ) {
+            removeGroceryItem(position);
+        }
+    }
+
     // remove grocery item
-    public void removeGroceryItem(int index) {
-        String item = groceryList.get(index);
-        groceryList.remove(item);
+    private void removeGroceryItem(int index) {
+        groceryList.remove(index);
     }
 
     // find item
-    public String findItem(String searchItem) {
-        int position = groceryList.indexOf(searchItem);
+    private int findItem(String searchItem) {
+        return groceryList.indexOf(searchItem);
+    }
+
+    public boolean onFile(String searchItem) {
+        int position = findItem(searchItem);
         if(position >= 0) {
-            return groceryList.get(position);
+            return true;
         }
-        return null;
+        return false;
     }
 }
