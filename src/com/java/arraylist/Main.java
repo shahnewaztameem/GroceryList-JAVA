@@ -1,5 +1,6 @@
 package com.java.arraylist;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -34,6 +35,8 @@ public class Main {
                     searchItem();
                     break;
                 case 6:
+                    processGroceryList();
+                case 7:
                     System.out.println("Bye Bye!!");
                     quit = true;
                     break;
@@ -83,5 +86,14 @@ public class Main {
         } else {
             System.out.println(searchItem + " is not in the grocery list");
         }
+    }
+
+    public static void processGroceryList() {
+        ArrayList<String> newArrayList = new ArrayList<String>(groceryList.getGroceryList());
+        //newArrayList.addAll(groceryList.getGroceryList());
+
+        // process list to array
+        String[] processIntoArray = new String[groceryList.getGroceryList().size()];
+        processIntoArray = groceryList.getGroceryList().toArray(processIntoArray);
     }
 }
